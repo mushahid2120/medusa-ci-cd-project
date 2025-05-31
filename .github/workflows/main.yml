@@ -3,7 +3,7 @@ name: Medusa-CI
 on: workflow_dispatch
 
 jobs:
-  build:
+  app-build:
     runs-on: self-hosted
     steps:
       - name: Checkout
@@ -15,7 +15,24 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
+        if: false
         run: |
           cd my-medusa-store
           npm install
+          
+      - name: Building
+        if: false
+        run: |
+          cd my-medusa-store
           npx medusa build
+
+
+  docker-build:
+     runs-on: self-hosted
+     # needs:
+     #   - app-build
+     steps:
+       - name: Docker building image
+         run: |
+            docker build -t mushahid144/mymedusa:v2 .
+         
