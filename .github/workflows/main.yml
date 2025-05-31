@@ -34,5 +34,6 @@ jobs:
      steps:
        - name: Docker building image
          run: |
+            cd my-medusa-store
             sudo docker build -t mushahid144/mymedusa:v2 .
          
