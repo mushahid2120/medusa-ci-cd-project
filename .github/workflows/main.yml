@@ -1,10 +1,8 @@
-name: GitHub Actions Demo
-on: [push]
+name: Medusa-CI
+on: workflow_dispatch
 jobs:
-  Testing:
+  gradle-build:
     runs-on: self-hosted
     steps:
-      - name: testing
-        run: echo "Hellow World "
-      - name: list-directory
-        run: ls -a
+      - name: Checking Out
+        uses: actions/checkout@v4
