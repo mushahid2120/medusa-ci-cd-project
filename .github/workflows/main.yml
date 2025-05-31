@@ -1,6 +1,7 @@
 name: Medusa-CI
 on: workflow_dispatch
 jobs:
+
   git_checking-out:
     runs-on: self-hosted
     steps:
@@ -9,7 +10,10 @@ jobs:
   medusa-build:
    runs-on: self-hosted
    steps: 
-    - name: Building app
-      run: |
+     - uses: actions/setup-node@v4
+       with:
+           node-version: '20'
+     - name: Building app
+       run: |
             cd my-medusa-store
             npx medusa build
