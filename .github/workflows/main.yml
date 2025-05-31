@@ -1,8 +1,13 @@
 name: Medusa-CI
 on: workflow_dispatch
 jobs:
-  gradle-build:
+  git_checking-out:
     runs-on: self-hosted
     steps:
       - name: Checking Out
         uses: actions/checkout@v4
+  medusa-build:
+   runs-on: self-hosted
+   steps:
+    - name: Building app
+      run: sudo npx medusa build
