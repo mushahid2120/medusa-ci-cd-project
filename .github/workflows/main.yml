@@ -13,4 +13,4 @@ jobs:
      - name: Building app
        run: |
             cd my-medusa-store
-            npx medusa build
+            npm install 
