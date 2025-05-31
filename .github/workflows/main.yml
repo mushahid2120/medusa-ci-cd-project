@@ -1,0 +1,10 @@
+name: GitHub Actions Demo
+on: [push]
+jobs:
+  Testing:
+    runs-on: self-hosted
+    steps:
+      - name: testing
+        run: echo "Hellow World "
+      - name: list-directory
+        run: ls -a
