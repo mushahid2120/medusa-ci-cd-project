@@ -25,3 +25,17 @@ module "ecs"{
     vpc_id = module.vpc.vpc_id
     alb_target_group_arn= module.loadbalancer.alb_tg_arn
 }
+
+module  "postgresql"{
+  source = "./postgresql"
+  priv1a_subnet_id   = module.vpc.priv1a_subnet_id
+  priv1b_subnet_id   = module.vpc.priv1b_subnet_id
+  security_group   = module.vpc.security_group
+}
+
+module "redis"{
+  source = "./redis"
+  priv1a_subnet_id   = module.vpc.priv1a_subnet_id
+  priv1b_subnet_id   = module.vpc.priv1b_subnet_id
+  security_group   = module.vpc.security_group
+}
