@@ -10,4 +10,4 @@ jobs:
    runs-on: self-hosted
    steps:
     - name: Building app
-      run: sudo npx medusa build
+      run: ls -a
