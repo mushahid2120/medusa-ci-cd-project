@@ -8,6 +8,8 @@ jobs:
         uses: actions/checkout@v4
   medusa-build:
    runs-on: self-hosted
-   steps:
+   steps: 
     - name: Building app
-      run: ls -a
+      run: |
+            cd my-medusa-store
+            ls -a
