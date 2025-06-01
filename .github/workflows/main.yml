@@ -36,4 +36,13 @@ jobs:
          run: |
             cd my-medusa-store
             sudo docker build -t mushahid144/mymedusa:v2 .
+            
+  docker-push:
+        runs-on: self-hosted
+        needs:
+          - docker-build
+        steps:
+          - name: Pushing to docker hub
+            run: |
+                sudo docker push mushahid144/mymedusa:v2
          
