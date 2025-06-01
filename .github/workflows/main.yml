@@ -39,7 +39,7 @@ jobs:
          run: |
             export DATABASE_URL=`sudo  aws rds describe-db-instances   --db-instance-identifier database-medusa \
             --query 'DBInstances[0].Endpoint.Address' --output text` 
-            export REDIS_URL=`aws elasticache describe-replication-groups   --replication-group-id my-redis-medusa \
+            export REDIS_URL=`sudo aws elasticache describe-replication-groups   --replication-group-id my-redis-medusa \
             --query 'ReplicationGroups[0].ConfigurationEndpoint.Address'   --output text`
             cat Dockerfile
             cd my-medusa-store
