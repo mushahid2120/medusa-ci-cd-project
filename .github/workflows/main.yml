@@ -18,12 +18,14 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
+        if: false
         run: |
           
           cd my-medusa-store
           npm install
           
       - name: Building
+        if: false
         run: |
           cd my-medusa-store
           npx medusa build
@@ -44,8 +46,8 @@ jobs:
             cd my-medusa-store
             cat medusa-config.ts
             cat Dockerfile
-            sudo docker build -t mymedusa:v1 .
-            sudo docker tag mushahid144/mymedusa:v1 974871161012.dkr.ecr.ap-south-1.amazonaws.com/ecr-github-action/medusa:latest 
+            sudo docker build -t ecrmedusa:v1 .
+            sudo docker tag ecrmedusa:v1 974871161012.dkr.ecr.ap-south-1.amazonaws.com/ecr-github-action/medusa:latest 
 
             
   docker-push:
