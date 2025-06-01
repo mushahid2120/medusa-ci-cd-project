@@ -43,11 +43,19 @@ jobs:
 
             echo $DATABASE_URL
             echo $REDIS_URL
+            echo $DATABASE_USERNAME
+            echo $DATABASE_PASSWORD
             
             cd my-medusa-store
             cat medusa-config.ts
             cat Dockerfile
-            sudo docker build -t ecrmedusa:v1 .
+            sudo docker build \
+            --build-arg DATABASE_URL=$DATABASE_URL \
+            --build-arg DATABASE_USERNAME=${{ env.DATABASE_USERNAME }} \
+            --build-arg DATABASE_PASSWORD=${{ env.DATABASE_PASSWORD }} \
+            --build-arg REDIS_URL=$REDIS_URL \
+            -t ecrmedusa:v1 .
+
             sudo docker tag ecrmedusa:v1 974871161012.dkr.ecr.ap-south-1.amazonaws.com/ecr-github-action/medusa:latest 
 
             
