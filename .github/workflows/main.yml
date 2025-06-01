@@ -29,8 +29,8 @@ jobs:
 
   docker-build:
      runs-on: self-hosted
-     # needs:  
-     #   - app-build
+     needs:  
+       - app-build
      steps:
        - name: Docker building image
          run: |
