@@ -1,4 +1,4 @@
-name: Medusa-CI
+name: Testing
 
 on: workflow_dispatch
 
