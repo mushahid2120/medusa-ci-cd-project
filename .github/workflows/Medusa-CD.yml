@@ -15,10 +15,11 @@ jobs:
     steps:
       - name: Fetch current task definition and create new revision
         run: |
-          TASK_NAME="medusa-task"
-          IMAGE="mushahid144/mymedusa:v2"
-          sudo aws ecs describe-task-definition --task-definition $TASK_NAME > task-def.json
 
+          TASK_NAME="medusa-task"
+          sudo aws ecs describe-task-definition --task-definition $TASK_NAME > task-def.json
+         
+          IMAGE="mushahid144/mymedusa:v1"
           jq --arg IMAGE "$IMAGE" '.taskDefinition | {
            family: .family,
            networkMode: .networkMode,
