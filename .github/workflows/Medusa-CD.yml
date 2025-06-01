@@ -24,11 +24,7 @@ jobs:
            family: .family,
            networkMode: .networkMode,
            executionRoleArn: .executionRoleArn,
-           containerDefinitions: (
-             .containerDefinitions | map(
-               .image = $IMAGE
-             )
-           ),
+           containerDefinitions: .containerDefinitions,
            requiresCompatibilities: .requiresCompatibilities,
            cpu: .cpu,
            memory: .memory
