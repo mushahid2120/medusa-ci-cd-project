@@ -33,7 +33,7 @@ jobs:
        - name: Docker building image
          run: |
             cd my-medusa-store
-            sudo docker build -t mushahid144/mymedusa:v2 .
+            sudo docker build -t mushahid144/mymedusa:latest .
             
   docker-push:
         runs-on: self-hosted
