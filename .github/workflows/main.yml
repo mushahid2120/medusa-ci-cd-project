@@ -19,10 +19,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          export DATABASE_URL=`sudo  aws rds describe-db-instances   --db-instance-identifier database-medusa \
-          --query 'DBInstances[0].Endpoint.Address' --output text` 
-          export REDIS_URL=`sudo aws elasticache describe-replication-groups   --replication-group-id my-redis-medusa \
-          --query 'ReplicationGroups[0].ConfigurationEndpoint.Address'   --output text`
           
           cd my-medusa-store
           npm install
@@ -40,10 +36,17 @@ jobs:
      steps:
        - name: Docker building image
          run: |
-
+            export DATABASE_URL=`sudo  aws rds describe-db-instances   --db-instance-identifier database-medusa \
+            --query 'DBInstances[0].Endpoint.Address' --output text` 
+            export REDIS_URL=`sudo aws elasticache describe-replication-groups   --replication-group-id my-redis-medusa \
+            --query 'ReplicationGroups[0].ConfigurationEndpoint.Address'   --output text`
+          
             cd my-medusa-store
+            cat medusa-config.ts
             cat Dockerfile
-            sudo docker build -t mushahid144/mymedusa:latest .
+            sudo docker build -t mymedusa:v1
+            sudo docker tag mushahid144/mymedusa:v1 974871161012.dkr.ecr.ap-south-1.amazonaws.com/ecr-github-action/medusa:latest 
+
             
   docker-push:
         runs-on: self-hosted
@@ -52,5 +55,6 @@ jobs:
         steps:
           - name: Pushing to docker hub
             run: |
-                sudo docker push mushahid144/mymedusa:latest
+                sudo docker push 974871161012.dkr.ecr.ap-south-1.amazonaws.com/ecr-github-action/medusa:latest
+
          
