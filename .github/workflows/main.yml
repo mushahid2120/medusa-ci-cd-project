@@ -15,13 +15,11 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        if: false
         run: |
           cd my-medusa-store
           npm install
           
       - name: Building
-        if: false
         run: |
           cd my-medusa-store
           npx medusa build
