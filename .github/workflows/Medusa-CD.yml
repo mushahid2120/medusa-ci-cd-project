@@ -18,6 +18,7 @@ jobs:
 
           TASK_NAME="medusa-task"
           sudo aws ecs describe-task-definition --task-definition $TASK_NAME > task-def.json
+          cat task-def.json
          
           IMAGE="mushahid144/mymedusa:v1"
           jq --arg IMAGE "$IMAGE" '.taskDefinition | {
