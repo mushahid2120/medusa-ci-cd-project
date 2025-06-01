@@ -41,8 +41,9 @@ jobs:
             --query 'DBInstances[0].Endpoint.Address' --output text` 
             export REDIS_URL=`sudo aws elasticache describe-replication-groups   --replication-group-id my-redis-medusa \
             --query 'ReplicationGroups[0].ConfigurationEndpoint.Address'   --output text`
-            cat Dockerfile
+            
             cd my-medusa-store
+            cat Dockerfile
             sudo docker build -t mushahid144/mymedusa:latest .
             
   docker-push:
