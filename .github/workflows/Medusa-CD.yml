@@ -19,19 +19,19 @@ jobs:
           IMAGE="mushahid144/mymedusa:v2"
           sudo aws ecs describe-task-definition --task-definition $TASK_NAME > task-def.json
 
-          jq '{
-            family: .taskDefinition.family,
-            networkMode: .taskDefinition.networkMode,
-            executionRoleArn: .taskDefinition.executionRoleArn,
-            containerDefinitions: (
-              .taskDefinition.containerDefinitions | map(
-                .image = "$IMAGE"
-              )
-            ),
-            requiresCompatibilities: ["FARGATE"],
-            cpu: "1024",
-            memory: "2048"
-          }' task-def.json > new-task-def.json
+          jq --arg IMAGE "$IMAGE" '.taskDefinition | {
+           family: .family,
+           networkMode: .networkMode,
+           executionRoleArn: .executionRoleArn,
+           containerDefinitions: (
+             .containerDefinitions | map(
+               .image = $IMAGE
+             )
+           ),
+           requiresCompatibilities: .requiresCompatibilities,
+           cpu: .cpu,
+           memory: .memory
+            }' task-def.json > new-task-def.json
 
           sudo aws ecs register-task-definition --cli-input-json file://new-task-def.json
 
