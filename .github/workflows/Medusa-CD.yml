@@ -1,10 +1,11 @@
 name: Deploy to ECS
 
 on:
-  workflow_run:
-    workflows: ["Medusa-CI"]
-    types:
-      - completed
+  push
+  # workflow_run:
+  #   workflows: ["Medusa-CI"]
+  #   types:
+  #     - completed
 
 jobs:
   deploy:
