@@ -17,7 +17,7 @@ jobs:
         run: |
           TASK_NAME="medusa-task"
           IMAGE="mushahid144/mymedusa:v2"
-          aws ecs describe-task-definition --task-definition $TASK_NAME > task-def.json
+          sudo aws ecs describe-task-definition --task-definition $TASK_NAME > task-def.json
 
           jq '{
             family: .taskDefinition.family,
@@ -33,11 +33,11 @@ jobs:
             memory: "2048"
           }' task-def.json > new-task-def.json
 
-          aws ecs register-task-definition --cli-input-json file://new-task-def.json
+          sudo aws ecs register-task-definition --cli-input-json file://new-task-def.json
 
       - name: Update ECS service to use new task definition
         run: |
-          aws ecs update-service \
+          sudo aws ecs update-service \
             --cluster medusa-cluster \
             --service medusa_ecs_service \
             --task-definition medusa-task \
