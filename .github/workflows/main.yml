@@ -18,7 +18,6 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        if: false
         run: |
           
           cd my-medusa-store
