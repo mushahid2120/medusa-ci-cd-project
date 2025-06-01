@@ -25,7 +25,7 @@ jobs:
             executionRoleArn: .taskDefinition.executionRoleArn,
             containerDefinitions: (
               .taskDefinition.containerDefinitions | map(
-                .image = "'$IMAGE'"
+                .image = "$IMAGE"
               )
             ),
             requiresCompatibilities: ["FARGATE"],
